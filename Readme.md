@@ -1,33 +1,29 @@
-# Week 2 Homework
-
-> In case you don't get one option exactly, select the closest one 
-
-For the homework, we'll be working with the _green_ taxi dataset located here:
+# NYC ETL PIPELINE 
+## OBJECTIVE
+For this project, I am working with the _green_ taxi dataset located here:
 
 `https://github.com/DataTalksClub/nyc-tlc-data/releases/tag/green/download`
 
-### Assignment
+The goal is to construct an ETL pipeline that loads the data, performs some transformations, and writes the data to a database (and Google Cloud!).
 
-The goal will be to construct an ETL pipeline that loads the data, performs some transformations, and writes the data to a database (and Google Cloud!).
-
-- Create a new pipeline, call it `green_taxi_etl`
-- Add a data loader block and use Pandas to read data for the final quarter of 2020 (months `10`, `11`, `12`).
-  - You can use the same datatypes and date parsing methods shown in the course.
-  - `BONUS`: load the final three months using a for loop and `pd.concat`
-- Add a transformer block and perform the following:
-  - Remove rows where the passenger count is equal to 0 _or_ the trip distance is equal to zero.
-  - Create a new column `lpep_pickup_date` by converting `lpep_pickup_datetime` to a date.
-  - Rename columns in Camel Case to Snake Case, e.g. `VendorID` to `vendor_id`.
-  - Add three assertions:
+- I created a new pipeline, and called it `green_taxi_etl`
+- I added a data loader block and used Pandas to read data for the final quarter of 2020 (months `10`, `11`, `12`).
+  - I used the same datatypes and date parsing methods shown in the course.
+  - I also loaded the final three months using a for loop and `pd.concat`
+- I added a transformer block and performed the following:
+  - Removed rows where the passenger count is equal to 0 _or_ the trip distance is equal to zero.
+  - Created a new column `lpep_pickup_date` by converting `lpep_pickup_datetime` to a date.
+  - Renamed columns in Camel Case to Snake Case, e.g. `VendorID` to `vendor_id`.
+  - Added three assertions:
     - `vendor_id` is one of the existing values in the column (currently)
     - `passenger_count` is greater than 0
     - `trip_distance` is greater than 0
-- Using a Postgres data exporter (SQL or Python), write the dataset to a table called `green_taxi` in a schema `mage`. Replace the table if it already exists.
-- Write your data as Parquet files to a bucket in GCP, partioned by `lpep_pickup_date`. Use the `pyarrow` library!
-- Schedule your pipeline to run daily at 5AM UTC.
+- Using a Postgres data exporter (SQL or Python), wrote the dataset to a table called `green_taxi` in a schema `mage`. Replaced the table if it already exists.
+- Wrote the data as Parquet files to a bucket in GCP, partioned by `lpep_pickup_date`, Using the `pyarrow` library!
+- Scheduled the pipeline to run daily at 5AM UTC.
 
 ## SOLUTION
-I created a new pipeline called green_taxi_etl, and added a data loader that loads green taxi trips of the last quarter of 2020 from a given URL. 
+I created a new pipeline called green_taxi_etl, and added a data loader that loads green taxi trips of the last quarter of 2020 from the given URL. 
 
 
 ```
